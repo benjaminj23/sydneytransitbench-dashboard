@@ -44,4 +44,4 @@ def test_vehicle_selection_filters_dashboard():
         app.button(key='mode_'+selected).click().run()
         assert not app.exception
         assert app.session_state['transport_mode']==selected
-        assert any(selected in str(item.value) for item in app.markdown)
+        assert any(item.label=='Exploring' and item.value==selected for item in app.metric)

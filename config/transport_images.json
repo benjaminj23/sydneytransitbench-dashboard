@@ -1,0 +1,42 @@
+{
+  "Bus": {
+    "path": "assets/transport/bus.jpg",
+    "title": "Sydney Bus at Wynyard - Flickr - Simon sees.jpg",
+    "author": "Simon_sees from Australia",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Sydney_Bus_at_Wynyard_-_Flickr_-_Simon_sees.jpg",
+    "description": "Sydney Bus in the new TfNSW light blue and white livery at Wynyard",
+    "modifications": "Displayed with responsive CSS cover crop; source image unmodified."
+  },
+  "Ferry": {
+    "path": "assets/transport/ferry.jpg",
+    "title": "Collaroy, Sydney Cove, 2013 (01).jpg",
+    "author": "Bahnfrend",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Collaroy,_Sydney_Cove,_2013_(01).jpg",
+    "description": "Sydney Ferries' Freshwater-class ferry MV Collaroy in Sydney Cove shortly before her arrival at Circular Quay, Sydney, with the Sydney Opera House in the background.  Photo taken from the MS Oosterdam, which was berthed at the Overseas Passenger Terminal.",
+    "modifications": "Displayed with responsive CSS cover crop; source image unmodified."
+  },
+  "Light rail": {
+    "path": "assets/transport/light-rail.jpg",
+    "title": "Tram passing Sydney Town Hall in January 2020.jpg",
+    "author": "Nick-D",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Tram_passing_Sydney_Town_Hall_in_January_2020.jpg",
+    "description": "A tram passing Sydney Town Hall headed for Circular Quay",
+    "modifications": "Displayed with responsive CSS cover crop; source image unmodified."
+  },
+  "Rail": {
+    "path": "assets/transport/rail.jpg",
+    "title": "Waratah Series 2 train stopping at Summer Hill.jpg",
+    "author": "KonlyandhisBeer",
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Waratah_Series_2_train_stopping_at_Summer_Hill.jpg",
+    "description": "Waratah Series 2 set B15 operating on a T2 Inner West local service bound for Homebush, decelerating to stop at Summer Hill. On the far left side of the photo can be seen Lewisham station, approximately 600 metres away from the end of the platform at which this photo was taken.",
+    "modifications": "Displayed with responsive CSS cover crop; source image unmodified."
+  }
+}

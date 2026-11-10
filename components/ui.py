@@ -24,6 +24,11 @@ def style():
     .hero-copy{width:50%;position:relative;z-index:1}.hero-copy h1{font-size:48px;line-height:1.04;color:#f4f8fd!important;max-width:490px;margin:20px 0 15px;padding:0;font-weight:750}
     .hero-copy p{color:#a9bed3;font-size:16px;max-width:370px}.hero-tags{display:flex;gap:9px;margin-top:24px;flex-wrap:wrap}.hero-tags span{font-size:11px;color:#d9e7f4;border:1px solid #ffffff30;padding:6px 12px;border-radius:20px}
     .hero-tags span:first-child{border-color:var(--accent);color:white}.hero-art{width:49%;color:var(--accent);text-align:center}.hero-art svg{width:100%;overflow:visible}.art-caption{font-size:9px;letter-spacing:.18em;color:#7894b1}
+    .photo-frame{position:relative;overflow:hidden;border-radius:16px;border:1px solid #ffffff20;box-shadow:0 15px 40px #0005;animation:arrive .65s ease-out both}
+    .transport-photo{display:block;width:100%;height:300px;object-fit:cover;transition:transform .6s ease;object-position:center 58%}
+    .photo-frame:hover .transport-photo{transform:scale(1.04)}
+    .photo-label{position:absolute;bottom:0;left:0;right:0;padding:35px 15px 14px;background:linear-gradient(transparent,#07111ee8);color:#fff;font-size:10px;text-align:left;letter-spacing:.12em}
+    @media(max-width:800px){.transport-photo{height:240px}}@media(max-width:550px){.mode-hero{flex-direction:column;gap:24px}.hero-copy,.hero-art{width:100%}.transport-photo{height:220px}}
     .vehicle{animation:arrive .7s cubic-bezier(.2,.8,.2,1) both}.ferry{animation:arrive .7s ease-out both,buoy 4s .7s ease-in-out infinite}
     @keyframes arrive{from{transform:translateX(90px);opacity:0}to{transform:translateX(0);opacity:1}}@keyframes buoy{50%{transform:translateY(-4px)}}
     @media(prefers-reduced-motion:reduce){.vehicle,.ferry{animation:none}}

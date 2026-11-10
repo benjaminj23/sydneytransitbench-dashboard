@@ -1,5 +1,8 @@
 """Code-native vehicle illustrations and mode-aware dashboard presentation."""
 import streamlit as st
+import base64
+from html import escape
+from services.data_loader import ROOT, config
 
 MODES = {
  'Bus': ('#2979df', 'BOAM', 'Street-level connections.', 'Every stop tells a story.'),
@@ -20,14 +23,20 @@ def vehicle(mode: str) -> str:
 
 def hero(selected: str, version: str, status: str):
     color,source,title,subtitle=MODES[selected]
+    photos = config('transport_images')
+    photo = photos.get(selected)
+    image_path = ROOT / photo['path'] if photo else None
+    if image_path and image_path.is_file():
+        encoded = base64.b64encode(image_path.read_bytes()).decode('ascii')
+        artwork = f'''<div class="photo-frame"><img class="transport-photo" src="data:image/jpeg;base64,{encoded}" alt="{escape(photo['title'],quote=True)}"/><span class="photo-label">SYDNEY / {selected.upper()} · REFERENCE PHOTO</span></div>'''
+    else:
+        artwork = f'<svg viewBox="0 0 560 290" aria-label="Stylised {selected} illustration" role="img">{vehicle(selected)}</svg><span class="art-caption">STYLISED VEHICLE · NO LIVE TRACKING</span>'
     st.markdown(f'''<section class="mode-hero" style="--accent:{color}">
       <div class="hero-copy"><div class="eyebrow">SYDNEY / {source} / {selected.upper()}</div>
       <h1>{title}</h1><p>{subtitle}</p><div class="hero-tags"><span>{status}</span><span>Historical research</span></div></div>
-      <div class="hero-art"><svg viewBox="0 0 560 290" aria-label="Stylised {selected} illustration" role="img">
-      <defs><radialGradient id="halo"><stop stop-color="{color}" stop-opacity=".35"/><stop offset="1" stop-color="{color}" stop-opacity="0"/></radialGradient></defs>
-      <ellipse cx="280" cy="143" rx="275" ry="145" fill="url(#halo)"/>
-      <path d="M21 246h510M49 260h440" stroke="#6485a6" opacity=".2"/>
-      {vehicle(selected)}</svg><span class="art-caption">STYLISED VEHICLE · NO LIVE TRACKING</span></div></section>''',unsafe_allow_html=True)
+      <div class="hero-art">{artwork}</div></section>''',unsafe_allow_html=True)
+    if photo and image_path.is_file():
+        st.caption(f"Photo: {photo['author']} · [{photo['license']}]({photo['license_url']}) · [Source and original]({photo['source_url']}). Historical reference photograph; not live tracking. Display cropped to fit.")
 
 def mode_selector() -> str:
     st.markdown('<div class="eyebrow mode-label">CHOOSE YOUR NETWORK</div>',unsafe_allow_html=True)
