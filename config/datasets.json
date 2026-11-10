@@ -16,11 +16,23 @@
     "integrated": "data/integrated/v3.parquet"
   },
   "V4": {
-    "status": "awaiting validation",
-    "validated": false,
+    "status": "frozen",
+    "validated": true,
     "records": 16928290,
     "updated": "2026-11-10T19:48:10.491662+00:00",
-    "provenance": "Direct SQL queries of multimodal_historical_unified_V4.parquet; release approval not supplied",
+    "provenance": "Team-confirmed Azure release and independent QA; coverage queried from the fingerprinted local V4 Parquet",
+    "schema_columns": 16,
+    "azure_blob_path": "curated/historical/releases/V4/multimodal_historical_unified_V4.parquet",
+    "release_qa": {
+      "critical_checks": "Passed; independent QA completed (team-reported)",
+      "loam_cross_source_removed": 157513,
+      "loam_cross_source_remaining": 0,
+      "retained_exact_duplicate_copies": 210,
+      "storage_immutability": "Not confirmed",
+      "artifacts": ["final_validation_report.json", "release_manifest.json", "KNOWN_LIMITATIONS.md", "LOAM_cross_source_duplicates_V4.parquet"]
+    },
+    "occupancy": "data/results/v4_occupancy_validation.csv",
+    "occupancy_validation": {"training_service_dates": 14, "validation_service_dates": 5, "earlier_macro_f1": 0.1506},
     "integrated": "data/integrated/v4.parquet",
     "unique_routes": 4767,
     "unique_stops": 38681,

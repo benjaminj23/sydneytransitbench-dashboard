@@ -32,6 +32,8 @@ def registry() -> dict:
     return result
 
 def version_label(version: str, meta: dict) -> str:
+    if meta['status'] == 'frozen':
+        return f'Frozen {version}'
     if meta.get('validated') is True:
         return f'Validated {version}'
     return {'frozen':f'Frozen {version}','provisional':f'Provisional {version}'}.get(meta['status'], f'{version} Candidate — awaiting validation')
@@ -52,7 +54,7 @@ def validate(frame: pd.DataFrame, kind: str) -> pd.DataFrame:
             raise ValueError('synthetic must be true or false')
         frame = frame.copy()
         frame['synthetic'] = normalized.eq('true')
-    for col in {'mae','rmse','within_5','accuracy','macro_f1','value','records','seconds','size_mb','count','actual_delay','predicted_delay','stop_lat','stop_lon'} & set(frame):
+    for col in {'mae','rmse','within_5','accuracy','macro_f1','band_mae','value','records','seconds','size_mb','count','actual_delay','predicted_delay','stop_lat','stop_lon'} & set(frame):
         frame[col] = pd.to_numeric(frame[col], errors='raise')
     for col in {'accuracy','macro_f1','within_5'} & set(frame):
         if not frame[col].dropna().between(0,1).all():

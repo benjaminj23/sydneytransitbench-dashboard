@@ -23,7 +23,7 @@ Bundled example files are ready to use. `python scripts/generate_inputs.py` rege
 
 Executive Overview; Data Quality and Validation; Transport Network Explorer; Arrival Delay Prediction; Occupancy Prediction; Storage and Query Performance; About the Research. Navigation, version and data mode are in the sidebar. Charts support hover, zoom and Plotly export. Tables support text search and CSV export.
 
-Research cards use supplied metadata, never demonstration chart totals. V1 is frozen, V3 provisional, V4 awaiting validation. Frozen is not a claim of validation. October's year was not supplied and is deliberately not invented. Unknown scope dates remain empty. V3 checks overlap; their counts must not be summed. V1 model results are only visible under V1.
+Research cards use supplied metadata, never demonstration chart totals. V1 is frozen, V3 provisional, and V4 is a published frozen benchmark with team-confirmed independent QA. Storage immutability is unconfirmed. October's year for the earlier V3 findings was not supplied. V3 checks overlap; their counts must not be summed. V1 results remain tied to V1, and V4 LOAM metrics are validation only.
 
 ## Configuration and input contracts
 

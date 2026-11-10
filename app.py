@@ -69,12 +69,24 @@ def notes(text):
 
 PIPELINE = 'Raw operational data → Timestamp standardisation → Source-aware deduplication → Common schema → GTFS matching → Data-quality validation → Parquet analytical outputs'
 
+def occupancy_validation_context():
+    run = meta.get('occupancy_validation')
+    if run:
+        st.info(f"LOAM validation only: {run['training_service_dates']} training service dates and {run['validation_service_dates']} validation service dates. Exact dates and experiment artifacts have not been supplied. Independent test pending.")
+        st.caption(f"Earlier reported macro F1: {run['earlier_macro_f1']:.4f}. Shown for context; its split and direct comparability have not been established.")
+
 if page == PAGES[0]:
     cols = st.columns(4)
     cols[0].metric('Integrated records · all modes', f"{meta['records']:,}" if meta['records'] is not None else 'Not supplied')
     cols[1].metric('Exploring', selected_transport)
     cols[2].metric('Dataset', version)
-    cols[3].metric('Release status', 'Validated' if meta['validated'] else meta['status'].title())
+    cols[3].metric('Release status', meta['status'].title())
+    if qa := meta.get('release_qa'):
+        st.success(f"Published benchmark · {meta['schema_columns']} unified columns · Independent QA complete")
+        with st.expander('Release QA and known limitations'):
+            st.write(f"Critical checks passed. {qa['loam_cross_source_removed']:,} redundant cross-source light-rail records removed; {qa['loam_cross_source_remaining']} cross-source LOAM overlaps remain. {qa['retained_exact_duplicate_copies']} exact duplicate copies were retained.")
+            st.caption('The project freeze is a versioning decision. Azure storage-level immutability has not been confirmed. GTFS matching limitations are documented in the release.')
+            st.caption(f"Team-confirmed Azure release: `{meta['azure_blob_path']}`. Companion artifacts: {', '.join(qa['artifacts'])}. These private artifacts were reported by the team and were not read by this deployment.")
     if meta.get('mode_totals'):
         st.subheader('V4 coverage · queried from the source Parquet')
         st.dataframe(pd.DataFrame(meta['mode_totals']),hide_index=True,use_container_width=True)
@@ -112,12 +124,18 @@ if page == PAGES[0]:
             for field in ['evaluation_start','evaluation_end','evaluated_at','split_strategy','baseline','limitations']:
                 if field not in display:display[field]='Not supplied'
             fields=['model']+(['mae'] if task=='delay' else ['accuracy','macro_f1'])+['evaluation_start','evaluation_end','evaluated_at','split_strategy','baseline','limitations']
-            st.write(f'{version} · {task}')
+            if task=='occupancy' and meta.get('occupancy_validation'):
+                st.write(f'{version} · LOAM occupancy validation')
+                occupancy_validation_context()
+                fields=['model','macro_f1','accuracy','band_mae']
+                display['accuracy']=display['accuracy'].map(lambda value:f'{value:.2%}' if pd.notna(value) else 'Not supplied')
+                display['band_mae']=display['band_mae'].map(lambda value:f'{value:.4f}' if pd.notna(value) else 'Not supplied')
+            else: st.write(f'{version} · {task}')
             st.dataframe(display[fields],hide_index=True,use_container_width=True)
-    st.subheader('How the pipeline supports modelling')
-    st.write('Integration creates the common observation table; it does not itself make predictions. Source-aware deduplication reduces repeated observations, GTFS identifiers support reference alignment, and timestamp/quality checks establish which rows can be used for each target. Delay regression uses actual minus scheduled arrival; occupancy classification uses the reported ordered passenger band. Actual arrivals and measured occupancy are targets or quality diagnostics, never predictor inputs.')
-    st.write('The next artifact is a versioned modelling table recording row eligibility, feature definitions and exclusions. Evaluation must record the held-out dates, split strategy, training-only preprocessing, baselines and metrics. This links each result back to the integrated release and makes leakage and comparability assessable. V1 scores are historical evidence, not proof of V4 performance.')
-    st.caption('Reviewer-response wording should be reconciled with Reviewer 1’s exact comment once supplied. Aggregation/query checks do not constitute release validation or model evaluation.')
+    st.subheader('From the integration pipeline to predictive modelling')
+    st.write('Predictive modelling is a downstream evaluation of the unified dataset’s analytical usefulness. The pipeline turns source-specific records into comparable trip-stop observations. Deduplication and timestamp checks determine which observations are eligible; consistent route, stop, direction and schedule fields make it possible to build the same features across sources.')
+    st.write('LOAM occupancy provides a concrete example: the unified table supplies scheduled features and observed passenger bands, which serve as labels. Comparing a unified historical model with separate route models on held-out service dates tests whether the integrated data supports useful predictions across routes. The current validation is light rail only and does not establish independent test performance or generalisation across modes.')
+    st.caption('This is the link requested by Reviewer 1: the pipeline produces the benchmark and its eligibility rules; modelling evaluates what that benchmark can support. Dataset QA and predictive performance answer different questions.')
 
 elif page == PAGES[1]:
     st.warning('Quality checks may overlap and cover different scopes. Do not sum these findings or extrapolate October figures to all of V3. Flagged anomalies are not confirmed errors.')
@@ -212,6 +230,8 @@ elif page in [PAGES[3],PAGES[4]]:
     delay = page == PAGES[3]
     st.caption('Evaluation scope: all transport modes in the supplied delay benchmark.' if delay else 'Evaluation scope: light rail only, regardless of the network selector above.')
     kind = 'delay' if delay else 'occupancy'
+    if not delay:
+        occupancy_validation_context()
     st.subheader('Regression · arrival delay in minutes' if delay else 'Multiclass classification · 22 ordered passenger-count bands')
     st.write('Observed delay = actual arrival − scheduled arrival. Positive is late; negative is early. Predicted arrival = scheduled arrival + predicted delay.' if delay else 'Predict the reported passenger-count band at each light-rail stop. Confirmed examples: 0–20 and 21–40 passengers. The remaining band labels must come from the research data.')
     data = get(kind)
@@ -231,10 +251,12 @@ elif page in [PAGES[3],PAGES[4]]:
                 st.error(f'Results file rejected: {exc}')
     st.caption(f'Only results explicitly associated with {version} are shown. Selecting another dataset never transfers V1 results.')
     if not data.empty:
-        metrics = ['mae','rmse','within_5'] if delay else ['accuracy','macro_f1']
+        metrics = ['mae','rmse','within_5'] if delay else ['accuracy','macro_f1'] + (['band_mae'] if 'band_mae' in data else [])
         for metric in metrics:
             if metric in data and data[metric].notna().any():
-                chart(data,x='model',y=metric,color='model',title=metric.upper() + (' (minutes)' if metric in ['mae','rmse'] else ' (fraction)'))
+                unit = 'minutes' if metric in ['mae','rmse'] else 'bands' if metric=='band_mae' else 'fraction'
+                scope = 'Validation · ' if not delay and meta.get('occupancy_validation') else ''
+                chart(data,x='model',y=metric,color='model',title=f'{scope}{metric.upper()} ({unit})')
             else: absent(f'Supply {metric} in {kind}.csv.')
         if delay:
             valid = data.dropna(subset=['mae'])
@@ -299,7 +321,7 @@ else:
     st.subheader('Dataset registry')
     st.dataframe(pd.DataFrame([{'version':v,'label':version_label(v,m),'records':m['records'],'provenance':m['provenance']} for v,m in versions.items()]),hide_index=True)
     st.subheader('Quality principles and limitations')
-    st.write('Retain provenance and scope; distinguish anomalies from confirmed errors; never sum overlapping checks. Frozen V1 has supplied model results. V3 remains provisional. V4 is planned and awaiting validation. Missing metrics remain missing. Generalisation, class imbalance and temporal leakage require careful evaluation.')
+    st.write('Retain provenance and scope; distinguish anomalies from confirmed errors; never sum overlapping checks. V1 and V4 are frozen benchmark releases; V3 remains provisional. V4 independent dataset QA is complete; its LOAM model results are validation only. Generalisation, class imbalance and temporal leakage require careful evaluation.')
     st.subheader('Contributors — configurable details')
     st.dataframe(pd.DataFrame(settings['contributors']),hide_index=True)
     st.subheader('Acknowledgements')

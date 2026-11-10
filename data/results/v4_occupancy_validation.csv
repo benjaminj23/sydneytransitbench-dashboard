@@ -1,0 +1,3 @@
+dataset_version,model,accuracy,macro_f1,band_mae,evaluation_stage,synthetic,provenance,updated,split_strategy,limitations
+V4,Unified historical model,0.6521,0.1711,,Validation,false,Modelling team summary; experiment artifacts not supplied,Not supplied,14 training service dates / 5 validation service dates,Exact split dates not supplied; independent test pending
+V4,Separate route models,0.6583,0.1677,0.5912,Validation,false,Modelling team summary; experiment artifacts not supplied,Not supplied,14 training service dates / 5 validation service dates,Exact split dates not supplied; independent test pending

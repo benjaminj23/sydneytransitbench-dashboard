@@ -11,7 +11,14 @@ def test_v4_release_reconciliation():
     assert not rows.empty and not rows.synthetic.any()
     assert rows.records.sum()==meta['records']==sum(r['records'] for r in meta['mode_totals'])
     assert not meta['allow_demo']
-    assert meta['validated'] is False
+    assert meta['validated'] is True and meta['status']=='frozen'
+
+def test_v4_occupancy_metrics_are_validation_only():
+    results=load('occupancy','V4','real').set_index('model')
+    assert results.evaluation_stage.eq('Validation').all()
+    assert results.loc['Unified historical model','macro_f1']==0.1711
+    assert results.loc['Separate route models','band_mae']==0.5912
+    assert results['limitations'].str.contains('independent test pending').all()
 
 def test_v4_query_evidence():
     evidence=json.loads((ROOT/'data/results/v4_query_evidence.json').read_text())

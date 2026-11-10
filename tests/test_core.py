@@ -8,12 +8,13 @@ from services.duckdb_queries import preview
 
 def test_registry():
     assert registry()['V3']['records']==7343136
-    assert registry()['V4']['validated'] is False
+    assert registry()['V4']['validated'] is True
 
 def test_labels():
     for version,meta in registry().items():
         assert 'Validated' not in version_label(version,meta)
     assert version_label('V4',{'validated':True,'status':'validated'})=='Validated V4'
+    assert version_label('V4',registry()['V4'])=='Frozen V4'
 
 def test_missing(tmp_path):
     assert read_file(tmp_path/'missing.csv','delay').empty

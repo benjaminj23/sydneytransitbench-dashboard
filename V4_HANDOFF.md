@@ -1,6 +1,8 @@
 # Week 9 V4 integration evidence
 
-Source: `multimodal_historical_unified_V4.parquet`. The source fingerprint, full SQL aggregate output, mode coverage and four independent explorer/reference comparisons are recorded in `data/results/v4_query_evidence.json`. The source has 16,928,290 records. Aggregate generation does not approve the release; metadata stays awaiting validation until explicit team approval is supplied.
+Source: `multimodal_historical_unified_V4.parquet`. The source fingerprint, full SQL aggregate output, mode coverage and four independent explorer/reference comparisons are recorded in `data/results/v4_query_evidence.json`. The source has 16,928,290 records and 16 columns. The team confirms publication in Azure at `curated/historical/releases/V4/multimodal_historical_unified_V4.parquet` as Frozen V4 with independent QA complete. Storage-level immutability is not confirmed. The dashboard does not claim to have read the private Azure blob or its companion reports.
+
+Team-reported QA: 157,513 redundant cross-source LOAM records removed, zero remaining cross-source overlaps, and 210 retained exact duplicate copies. GTFS limitations are documented in the release's `KNOWN_LIMITATIONS.md`.
 
 ## Reproduce locally
 
@@ -32,6 +34,6 @@ The full source Parquet is approximately 238 MB and is not committed to the publ
 
 Add only completed, dataset-scoped results in the existing delay/occupancy CSVs. Optional columns `evaluation_start`, `evaluation_end` (held-out period), `evaluated_at` (experiment date), `split_strategy`, `baseline`, and `limitations` appear in the homepage summary. Existing V1 results have no supplied evaluation dates and remain labelled accordingly. No V4 performance is inferred from them.
 
-The homepage explains integration → eligibility/quality controls → versioned modelling table → leakage-safe held-out evaluation. Reviewer 1's exact comment and team-approved response wording have not yet been supplied, so the current rationale is not represented as an agreed reviewer response.
+Reviewer 1 asked what connects pipeline construction to prediction. The homepage explains how the integrated trip-stop table, eligibility rules and common features enable modelling as a downstream evaluation of analytical usefulness. The LOAM comparison is a concrete example, limited to light-rail validation.
 
-Pending team inputs: release approval/status; experiment result files and evaluation details; Reviewer 1's exact wording; approved hosted raw-data access. No new interface features are included in this update.
+`data/results/v4_occupancy_validation.csv` transcribes the modelling team's summary: 14 training and 5 validation service dates; exact dates and experiment artifacts are unavailable. Earlier macro F1 of 0.1506 is context only. Independent test evaluation and authorised hosted raw-data access remain pending.

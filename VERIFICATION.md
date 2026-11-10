@@ -4,7 +4,7 @@
 
 `python -m pytest -q` with `STB_TEST_V4` set to the actual Downloads source: **15 passed**. Full-source DuckDB aggregation reconciled daily totals, mode totals and 16,928,290 integrated records. Four combined explorer filter cases were compared with independent SQL reference counts; the 2,000-row cap, literal injection-like filter and time-only arrival handling were exercised. Source SHA-256 and per-case evidence are in `data/results/v4_query_evidence.json`.
 
-These checks establish local source/query behavior. They do not certify release validation, model quality, geographic scope or hosted raw-data availability. No V4 model experiments or evaluation dates were supplied. Reviewer 1's exact comment and release approval remain pending.
+These checks establish local source/query behavior. Independent release QA and the Frozen V4 designation were subsequently confirmed by the team. The LOAM validation metrics are team-reported; exact dates, experiment files and independent test results were not supplied. Hosted raw-data access remains unavailable.
 
 ## Initial application verification
 
