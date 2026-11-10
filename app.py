@@ -6,6 +6,7 @@ import streamlit as st
 from services.data_loader import ROOT, config, registry, version_label, load, demo, read_file, validate
 from services.duckdb_queries import preview
 from components.ui import style, chart, table, DEMO_LABEL
+from components.cockpit import hero, mode_selector
 
 st.set_page_config(page_title='SydneyTransitBench', page_icon='🚉', layout='wide')
 style()
@@ -13,24 +14,32 @@ settings = config('settings')
 versions = registry()
 PAGES = ['Executive Overview','Data Quality and Validation','Transport Network Explorer','Arrival Delay Prediction','Occupancy Prediction','Storage and Query Performance','About the Research']
 with st.sidebar:
-    st.title('SydneyTransitBench')
-    st.caption('MULTIMODAL RESEARCH INTELLIGENCE')
-    page = st.radio('Workspace', PAGES)
-    version = st.selectbox('Dataset version', list(versions), index=list(versions).index(settings['default_version']))
-    mode = st.selectbox('Data mode', ['demo','real'], index=0 if os.getenv('STB_MODE',settings['mode']) == 'demo' else 1)
+    st.markdown('### SydneyTransitBench')
+    st.caption('THE NETWORK, EXPLAINED.')
+    workspace = st.radio('Workspace', ['Dashboard','Explore','Research'])
+    with st.expander('Dataset settings', expanded=False):
+        version = st.selectbox('Dataset version', list(versions), index=list(versions).index(settings['default_version']))
+        mode = st.selectbox('Data mode', ['demo','real'], index=0 if os.getenv('STB_MODE',settings['mode']) == 'demo' else 1)
     meta = versions[version]
     st.info(version_label(version,meta))
     st.caption('Integrating operational transport data to study quality, prediction and analytical performance.')
     st.divider()
     st.caption('UNSW | Master of Data Science and Decisions | SydneyTransitBench')
 
-st.caption(f'RESEARCH WORKSPACE  /  {version_label(version, meta)}  /  {mode.upper()} MODE')
-st.title('SydneyTransitBench | Sydney Public Transport Intelligence' if page == PAGES[0] else page)
-st.caption("Multimodal data integration, quality assurance and predictive analytics across Sydney's public transport network.")
+page = PAGES[0] if workspace=='Dashboard' else PAGES[2] if workspace=='Explore' else None
+st.caption(f'SYDNEY TRANSIT INTELLIGENCE  /  {version_label(version, meta)}  /  {mode.upper()}')
+selected_transport = mode_selector()
+if workspace=='Dashboard':
+    hero(selected_transport,version,version_label(version,meta))
+elif workspace=='Research':
+    page = st.selectbox('Research topic',[PAGES[i] for i in [1,3,4,5,6]])
+    st.title(page)
+else:
+    st.title(f'{selected_transport} explorer')
 if mode == 'demo':
     st.info('Demo mode: supplied research findings retain their provenance. Synthetic charts are labelled individually.')
 st.caption(f"Provenance: {meta['provenance']} · Last updated: {meta['updated']}")
-context = (version, mode)
+context = (version, mode, selected_transport)
 if st.session_state.get('explorer_context') != context:
     st.session_state.pop('explorer_result', None)
     st.session_state.pop('explorer_synthetic', None)
@@ -50,6 +59,8 @@ def aggregates():
     data = get('aggregates')
     if data.empty and mode == 'demo':
         data = demo('aggregates',version)
+    if not data.empty:
+        data = data[data['mode']==selected_transport]
     return data
 
 def notes(text):
@@ -60,29 +71,27 @@ PIPELINE = 'Raw operational data → Timestamp standardisation → Source-aware 
 
 if page == PAGES[0]:
     cols = st.columns(4)
-    cols[0].metric('Integrated records', f"{meta['records']:,}" if meta['records'] is not None else 'Not supplied')
-    cols[1].metric('Transport modes', '4' if version in ['V1','V3'] else 'Not supplied')
-    cols[2].metric('Selected release', version)
-    cols[3].metric('Validation', 'Validated' if meta['validated'] else meta['status'].title())
-    cols = st.columns(3)
-    for col,label,key in zip(cols,['Unique routes','Unique stops','Date coverage'],['unique_routes','unique_stops','date_coverage']):
-        col.metric(label,str(meta.get(key,'Not supplied')))
-    st.subheader('One network. Four operational perspectives.')
-    st.write('SydneyTransitBench integrates BOAM bus, FOAM ferry, LOAM light rail and ROAM rail records into a common analytical schema. The research evaluates data quality, arrival delay, light-rail occupancy and storage/query performance.')
+    cols[0].metric('Integrated records · all modes', f"{meta['records']:,}" if meta['records'] is not None else 'Not supplied')
+    cols[1].metric('Exploring', selected_transport)
+    cols[2].metric('Dataset', version)
+    cols[3].metric('Release status', 'Validated' if meta['validated'] else meta['status'].title())
+    st.subheader(f'Inside the {selected_transport.lower()} network')
+    st.caption('Mode selection filters the charts below. Research totals and model evaluations retain their original scope.')
     data = aggregates()
     if not data.empty:
+        chart(data,kind='area',x='service_date',y='records',color='mode',title=f'{selected_transport} · operational record volume')
         a,b = st.columns(2)
-        with a: chart(data.groupby(['mode','synthetic'],as_index=False).records.sum(),x='mode',y='records',color='mode',title='Record distribution by mode')
-        with b: chart(data,kind='line',x='service_date',y='records',color='mode',title='Records over time')
-        a,b = st.columns(2)
-        with a: chart(data, x='mode',y=['missing_scheduled','missing_actual'],title='Missing arrival values')
+        with a:
+            missing = data.groupby(['mode','synthetic'],as_index=False)[['missing_scheduled','missing_actual']].sum()
+            chart(missing, x='mode',y=['missing_scheduled','missing_actual'],title='Arrival timestamp completeness · missing values')
         eligible = data.groupby(['mode','synthetic'],as_index=False)[['gtfs_matches','gtfs_eligible']].sum()
         eligible['match_rate'] = eligible.gtfs_matches.div(eligible.gtfs_eligible.replace(0,float('nan')))
         with b: chart(eligible,x='mode',y='match_rate',color='mode',title='GTFS matching rate (matched / eligible)')
     else: absent('Supply aggregates.csv for mode counts, dates, missingness and GTFS rates.')
-    absent('Arrival-delay distributions require observed delay aggregates or bounded operational results.')
-    st.subheader('Integration pipeline')
-    st.info(PIPELINE)
+    with st.expander('Coverage, provenance and integration pipeline'):
+        st.write(PIPELINE)
+        st.write({label:meta.get(key,'Not supplied') for label,key in [('Unique routes','unique_routes'),('Unique stops','unique_stops'),('Date coverage','date_coverage')]})
+        st.caption('Arrival-delay distributions await observed delay aggregates. No live vehicle positions are shown.')
     notes('Registry totals are project-reported integrated counts. Synthetic aggregates do not reconcile to research totals and are never used for KPI cards. Frozen does not imply validated.')
 
 elif page == PAGES[1]:
@@ -125,7 +134,9 @@ elif page == PAGES[2]:
     st.write('Query a bounded operational preview. Exact filters are pushed into DuckDB; blank filters mean all values.')
     with st.form('explorer'):
         cols = st.columns(5)
-        filters = {key:col.text_input(label) for col,key,label in zip(cols,['mode','route_id','direction_id','stop_id','service_date'],['Transport mode','Route ID','Direction','Stop ID','Service date (YYYY-MM-DD)'])}
+        filters = {'mode':selected_transport}
+        cols[0].metric('Transport mode',selected_transport)
+        filters.update({key:col.text_input(label) for col,key,label in zip(cols[1:],['route_id','direction_id','stop_id','service_date'],['Route ID','Direction','Stop ID','Service date (YYYY-MM-DD)'])})
         limit = st.slider('Maximum preview rows',10,2000,500)
         run = st.form_submit_button('Query operational records',type='primary')
     if run:
@@ -161,6 +172,7 @@ elif page == PAGES[2]:
 
 elif page in [PAGES[3],PAGES[4]]:
     delay = page == PAGES[3]
+    st.caption('Evaluation scope: all transport modes in the supplied delay benchmark.' if delay else 'Evaluation scope: light rail only, regardless of the network selector above.')
     kind = 'delay' if delay else 'occupancy'
     st.subheader('Regression · arrival delay in minutes' if delay else 'Multiclass classification · 22 ordered passenger-count bands')
     st.write('Observed delay = actual arrival − scheduled arrival. Positive is late; negative is early. Predicted arrival = scheduled arrival + predicted delay.' if delay else 'Predict the reported passenger-count band at each light-rail stop. Confirmed examples: 0–20 and 21–40 passengers. The remaining band labels must come from the research data.')
@@ -219,6 +231,7 @@ elif page in [PAGES[3],PAGES[4]]:
 elif page == PAGES[5]:
     data = get('benchmarks')
     if data.empty and mode == 'demo': data = demo('benchmarks',version)
+    if not data.empty: data = data[data['mode']==selected_transport]
     if data.empty: absent('No confirmed storage/query benchmarks supplied. Add benchmarks.csv including environment and repetitions.')
     else:
         if data.synthetic.any(): st.warning(DEMO_LABEL)
