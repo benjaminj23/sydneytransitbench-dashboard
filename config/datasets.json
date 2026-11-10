@@ -1,0 +1,5 @@
+{
+ "V1":{"status":"frozen","validated":false,"records":1921752,"updated":"Not supplied","provenance":"Project brief; frozen V1","integrated":"data/integrated/v1.parquet"},
+ "V3":{"status":"provisional","validated":false,"records":7343136,"updated":"Not supplied","provenance":"Project brief; preliminary V3","integrated":"data/integrated/v3.parquet"},
+ "V4":{"status":"awaiting validation","validated":false,"records":null,"updated":"Not supplied","provenance":"Planned dataset; no release supplied","integrated":"data/integrated/v4.parquet"}
+}

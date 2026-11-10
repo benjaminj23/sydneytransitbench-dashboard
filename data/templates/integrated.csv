@@ -1,0 +1,1 @@
+dataset_version,source,mode,service_date,route_id,trip_id,direction_id,stop_id,stop_sequence,scheduled_arrival,actual_arrival,arrival_delay_minutes,occupancy_band,gtfs_route_id,gtfs_stop_id,quality_flags

@@ -1,0 +1,73 @@
+dataset_version,mode,category,format,workload,records,size_mb,seconds,repetition,hardware,software,synthetic,provenance,updated
+V1,Bus,Aggregation,CSV,Mode count,100000,120,0.255,1,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V1,Bus,Aggregation,CSV,Mode count,100000,120,0.26,2,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V1,Bus,Aggregation,CSV,Mode count,100000,120,0.265,3,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V1,Bus,Aggregation,Parquet,Mode count,100000,32,0.085,1,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V1,Bus,Aggregation,Parquet,Mode count,100000,32,0.09,2,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V1,Bus,Aggregation,Parquet,Mode count,100000,32,0.095,3,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V1,Ferry,Aggregation,CSV,Mode count,100000,120,0.255,1,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V1,Ferry,Aggregation,CSV,Mode count,100000,120,0.26,2,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V1,Ferry,Aggregation,CSV,Mode count,100000,120,0.265,3,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V1,Ferry,Aggregation,Parquet,Mode count,100000,32,0.085,1,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V1,Ferry,Aggregation,Parquet,Mode count,100000,32,0.09,2,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V1,Ferry,Aggregation,Parquet,Mode count,100000,32,0.095,3,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V1,Light rail,Aggregation,CSV,Mode count,100000,120,0.255,1,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V1,Light rail,Aggregation,CSV,Mode count,100000,120,0.26,2,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V1,Light rail,Aggregation,CSV,Mode count,100000,120,0.265,3,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V1,Light rail,Aggregation,Parquet,Mode count,100000,32,0.085,1,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V1,Light rail,Aggregation,Parquet,Mode count,100000,32,0.09,2,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V1,Light rail,Aggregation,Parquet,Mode count,100000,32,0.095,3,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V1,Rail,Aggregation,CSV,Mode count,100000,120,0.255,1,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V1,Rail,Aggregation,CSV,Mode count,100000,120,0.26,2,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V1,Rail,Aggregation,CSV,Mode count,100000,120,0.265,3,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V1,Rail,Aggregation,Parquet,Mode count,100000,32,0.085,1,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V1,Rail,Aggregation,Parquet,Mode count,100000,32,0.09,2,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V1,Rail,Aggregation,Parquet,Mode count,100000,32,0.095,3,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V3,Bus,Aggregation,CSV,Mode count,100000,120,0.255,1,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V3,Bus,Aggregation,CSV,Mode count,100000,120,0.26,2,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V3,Bus,Aggregation,CSV,Mode count,100000,120,0.265,3,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V3,Bus,Aggregation,Parquet,Mode count,100000,32,0.085,1,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V3,Bus,Aggregation,Parquet,Mode count,100000,32,0.09,2,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V3,Bus,Aggregation,Parquet,Mode count,100000,32,0.095,3,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V3,Ferry,Aggregation,CSV,Mode count,100000,120,0.255,1,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V3,Ferry,Aggregation,CSV,Mode count,100000,120,0.26,2,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V3,Ferry,Aggregation,CSV,Mode count,100000,120,0.265,3,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V3,Ferry,Aggregation,Parquet,Mode count,100000,32,0.085,1,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V3,Ferry,Aggregation,Parquet,Mode count,100000,32,0.09,2,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V3,Ferry,Aggregation,Parquet,Mode count,100000,32,0.095,3,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V3,Light rail,Aggregation,CSV,Mode count,100000,120,0.255,1,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V3,Light rail,Aggregation,CSV,Mode count,100000,120,0.26,2,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V3,Light rail,Aggregation,CSV,Mode count,100000,120,0.265,3,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V3,Light rail,Aggregation,Parquet,Mode count,100000,32,0.085,1,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V3,Light rail,Aggregation,Parquet,Mode count,100000,32,0.09,2,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V3,Light rail,Aggregation,Parquet,Mode count,100000,32,0.095,3,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V3,Rail,Aggregation,CSV,Mode count,100000,120,0.255,1,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V3,Rail,Aggregation,CSV,Mode count,100000,120,0.26,2,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V3,Rail,Aggregation,CSV,Mode count,100000,120,0.265,3,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V3,Rail,Aggregation,Parquet,Mode count,100000,32,0.085,1,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V3,Rail,Aggregation,Parquet,Mode count,100000,32,0.09,2,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V3,Rail,Aggregation,Parquet,Mode count,100000,32,0.095,3,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V4,Bus,Aggregation,CSV,Mode count,100000,120,0.255,1,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V4,Bus,Aggregation,CSV,Mode count,100000,120,0.26,2,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V4,Bus,Aggregation,CSV,Mode count,100000,120,0.265,3,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V4,Bus,Aggregation,Parquet,Mode count,100000,32,0.085,1,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V4,Bus,Aggregation,Parquet,Mode count,100000,32,0.09,2,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V4,Bus,Aggregation,Parquet,Mode count,100000,32,0.095,3,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V4,Ferry,Aggregation,CSV,Mode count,100000,120,0.255,1,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V4,Ferry,Aggregation,CSV,Mode count,100000,120,0.26,2,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V4,Ferry,Aggregation,CSV,Mode count,100000,120,0.265,3,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V4,Ferry,Aggregation,Parquet,Mode count,100000,32,0.085,1,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V4,Ferry,Aggregation,Parquet,Mode count,100000,32,0.09,2,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V4,Ferry,Aggregation,Parquet,Mode count,100000,32,0.095,3,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V4,Light rail,Aggregation,CSV,Mode count,100000,120,0.255,1,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V4,Light rail,Aggregation,CSV,Mode count,100000,120,0.26,2,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V4,Light rail,Aggregation,CSV,Mode count,100000,120,0.265,3,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V4,Light rail,Aggregation,Parquet,Mode count,100000,32,0.085,1,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V4,Light rail,Aggregation,Parquet,Mode count,100000,32,0.09,2,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V4,Light rail,Aggregation,Parquet,Mode count,100000,32,0.095,3,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V4,Rail,Aggregation,CSV,Mode count,100000,120,0.255,1,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V4,Rail,Aggregation,CSV,Mode count,100000,120,0.26,2,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V4,Rail,Aggregation,CSV,Mode count,100000,120,0.265,3,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V4,Rail,Aggregation,Parquet,Mode count,100000,32,0.085,1,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V4,Rail,Aggregation,Parquet,Mode count,100000,32,0.09,2,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only
+V4,Rail,Aggregation,Parquet,Mode count,100000,32,0.095,3,Illustrative environment — not measured,Illustrative only,True,Synthetic demonstration,Example only

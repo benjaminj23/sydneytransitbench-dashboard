@@ -1,0 +1,5 @@
+dataset_version,synthetic,provenance,updated,model,mae
+V1,False,User-supplied frozen V1 benchmark,Not supplied,Zero-delay baseline,2.634
+V1,False,User-supplied frozen V1 benchmark,Not supplied,Mode-median baseline,2.372
+V1,False,User-supplied frozen V1 benchmark,Not supplied,Route-hour median baseline,2.316
+V1,False,User-supplied frozen V1 benchmark,Not supplied,LightGBM,2.764

@@ -1,0 +1,10 @@
+dataset_version,mode,start_date,end_date,scope,category,metric,value,unit,status,synthetic,provenance,updated
+V3,All sources; mode allocation not supplied,,,October; year not supplied,Deduplication,Raw records,5419264,records,Preliminary / unresolved,False,User-supplied preliminary V3 findings; scopes may overlap,Not supplied
+V3,All sources; mode allocation not supplied,,,October; year not supplied,Deduplication,Retained records,5377510,records,Preliminary / unresolved,False,User-supplied preliminary V3 findings; scopes may overlap,Not supplied
+V3,All sources; mode allocation not supplied,,,October; year not supplied,Deduplication,Removed by source-aware deduplication,41754,records,Preliminary / unresolved,False,User-supplied preliminary V3 findings; scopes may overlap,Not supplied
+V3,Not supplied,,,Quality-check scope not supplied,Missing values,Missing scheduled arrivals,5144,records,Preliminary / unresolved,False,User-supplied preliminary V3 findings; scopes may overlap,Not supplied
+V3,Not supplied,,,Quality-check scope not supplied,Missing values,Missing actual arrivals,3069,records,Preliminary / unresolved,False,User-supplied preliminary V3 findings; scopes may overlap,Not supplied
+V3,Not supplied,,,Quality-check scope not supplied,Duplicate keys,Repeated-key groups without distinct timestamps,6822,groups,Preliminary / unresolved,False,User-supplied preliminary V3 findings; scopes may overlap,Not supplied
+V3,Not supplied,,,Quality-check scope not supplied,Conflicting keys,Occupancy-disagreement groups,463,groups,Preliminary / unresolved,False,User-supplied preliminary V3 findings; scopes may overlap,Not supplied
+V3,Not supplied,,,Quality-check scope not supplied,Conflicting keys,Conflicting trip-stop keys flagged,60,groups,Preliminary / unresolved,False,User-supplied preliminary V3 findings; scopes may overlap,Not supplied
+V3,Bus / BOAM,,,Quality-check scope not supplied,Timestamp anomalies,Potential service-date rollover anomalies,1678,records,Preliminary / unresolved,False,User-supplied preliminary V3 findings; scopes may overlap,Not supplied

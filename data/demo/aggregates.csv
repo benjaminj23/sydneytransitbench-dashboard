@@ -1,0 +1,169 @@
+dataset_version,mode,service_date,records,missing_scheduled,missing_actual,gtfs_matches,gtfs_eligible,synthetic,provenance,updated
+V1,Bus,2025-10-01,1168,2,1,1138,1168,True,Deterministic illustrative example,Example only
+V1,Bus,2025-10-02,1199,2,1,1169,1199,True,Deterministic illustrative example,Example only
+V1,Bus,2025-10-03,1230,2,1,1200,1230,True,Deterministic illustrative example,Example only
+V1,Bus,2025-10-04,1261,2,1,1231,1261,True,Deterministic illustrative example,Example only
+V1,Bus,2025-10-05,1292,2,1,1262,1292,True,Deterministic illustrative example,Example only
+V1,Bus,2025-10-06,1323,2,1,1293,1323,True,Deterministic illustrative example,Example only
+V1,Bus,2025-10-07,1354,2,1,1324,1354,True,Deterministic illustrative example,Example only
+V1,Bus,2025-10-08,1385,2,1,1355,1385,True,Deterministic illustrative example,Example only
+V1,Bus,2025-10-09,1416,2,1,1386,1416,True,Deterministic illustrative example,Example only
+V1,Bus,2025-10-10,1447,2,1,1417,1447,True,Deterministic illustrative example,Example only
+V1,Bus,2025-10-11,1478,2,1,1448,1478,True,Deterministic illustrative example,Example only
+V1,Bus,2025-10-12,1509,2,1,1479,1509,True,Deterministic illustrative example,Example only
+V1,Bus,2025-10-13,1540,2,1,1510,1540,True,Deterministic illustrative example,Example only
+V1,Bus,2025-10-14,1571,2,1,1541,1571,True,Deterministic illustrative example,Example only
+V1,Ferry,2025-10-01,1305,3,2,1275,1305,True,Deterministic illustrative example,Example only
+V1,Ferry,2025-10-02,1336,3,2,1306,1336,True,Deterministic illustrative example,Example only
+V1,Ferry,2025-10-03,1367,3,2,1337,1367,True,Deterministic illustrative example,Example only
+V1,Ferry,2025-10-04,1398,3,2,1368,1398,True,Deterministic illustrative example,Example only
+V1,Ferry,2025-10-05,1429,3,2,1399,1429,True,Deterministic illustrative example,Example only
+V1,Ferry,2025-10-06,1460,3,2,1430,1460,True,Deterministic illustrative example,Example only
+V1,Ferry,2025-10-07,1491,3,2,1461,1491,True,Deterministic illustrative example,Example only
+V1,Ferry,2025-10-08,1522,3,2,1492,1522,True,Deterministic illustrative example,Example only
+V1,Ferry,2025-10-09,1553,3,2,1523,1553,True,Deterministic illustrative example,Example only
+V1,Ferry,2025-10-10,1584,3,2,1554,1584,True,Deterministic illustrative example,Example only
+V1,Ferry,2025-10-11,1615,3,2,1585,1615,True,Deterministic illustrative example,Example only
+V1,Ferry,2025-10-12,1646,3,2,1616,1646,True,Deterministic illustrative example,Example only
+V1,Ferry,2025-10-13,1677,3,2,1647,1677,True,Deterministic illustrative example,Example only
+V1,Ferry,2025-10-14,1708,3,2,1678,1708,True,Deterministic illustrative example,Example only
+V1,Light rail,2025-10-01,1442,4,3,1412,1442,True,Deterministic illustrative example,Example only
+V1,Light rail,2025-10-02,1473,4,3,1443,1473,True,Deterministic illustrative example,Example only
+V1,Light rail,2025-10-03,1504,4,3,1474,1504,True,Deterministic illustrative example,Example only
+V1,Light rail,2025-10-04,1535,4,3,1505,1535,True,Deterministic illustrative example,Example only
+V1,Light rail,2025-10-05,1566,4,3,1536,1566,True,Deterministic illustrative example,Example only
+V1,Light rail,2025-10-06,1597,4,3,1567,1597,True,Deterministic illustrative example,Example only
+V1,Light rail,2025-10-07,1628,4,3,1598,1628,True,Deterministic illustrative example,Example only
+V1,Light rail,2025-10-08,1659,4,3,1629,1659,True,Deterministic illustrative example,Example only
+V1,Light rail,2025-10-09,1690,4,3,1660,1690,True,Deterministic illustrative example,Example only
+V1,Light rail,2025-10-10,1721,4,3,1691,1721,True,Deterministic illustrative example,Example only
+V1,Light rail,2025-10-11,1752,4,3,1722,1752,True,Deterministic illustrative example,Example only
+V1,Light rail,2025-10-12,1783,4,3,1753,1783,True,Deterministic illustrative example,Example only
+V1,Light rail,2025-10-13,1814,4,3,1784,1814,True,Deterministic illustrative example,Example only
+V1,Light rail,2025-10-14,1845,4,3,1815,1845,True,Deterministic illustrative example,Example only
+V1,Rail,2025-10-01,1579,5,4,1549,1579,True,Deterministic illustrative example,Example only
+V1,Rail,2025-10-02,1610,5,4,1580,1610,True,Deterministic illustrative example,Example only
+V1,Rail,2025-10-03,1641,5,4,1611,1641,True,Deterministic illustrative example,Example only
+V1,Rail,2025-10-04,1672,5,4,1642,1672,True,Deterministic illustrative example,Example only
+V1,Rail,2025-10-05,1703,5,4,1673,1703,True,Deterministic illustrative example,Example only
+V1,Rail,2025-10-06,1734,5,4,1704,1734,True,Deterministic illustrative example,Example only
+V1,Rail,2025-10-07,1765,5,4,1735,1765,True,Deterministic illustrative example,Example only
+V1,Rail,2025-10-08,1796,5,4,1766,1796,True,Deterministic illustrative example,Example only
+V1,Rail,2025-10-09,1827,5,4,1797,1827,True,Deterministic illustrative example,Example only
+V1,Rail,2025-10-10,1858,5,4,1828,1858,True,Deterministic illustrative example,Example only
+V1,Rail,2025-10-11,1889,5,4,1859,1889,True,Deterministic illustrative example,Example only
+V1,Rail,2025-10-12,1920,5,4,1890,1920,True,Deterministic illustrative example,Example only
+V1,Rail,2025-10-13,1951,5,4,1921,1951,True,Deterministic illustrative example,Example only
+V1,Rail,2025-10-14,1982,5,4,1952,1982,True,Deterministic illustrative example,Example only
+V3,Bus,2025-10-01,1168,2,1,1138,1168,True,Deterministic illustrative example,Example only
+V3,Bus,2025-10-02,1199,2,1,1169,1199,True,Deterministic illustrative example,Example only
+V3,Bus,2025-10-03,1230,2,1,1200,1230,True,Deterministic illustrative example,Example only
+V3,Bus,2025-10-04,1261,2,1,1231,1261,True,Deterministic illustrative example,Example only
+V3,Bus,2025-10-05,1292,2,1,1262,1292,True,Deterministic illustrative example,Example only
+V3,Bus,2025-10-06,1323,2,1,1293,1323,True,Deterministic illustrative example,Example only
+V3,Bus,2025-10-07,1354,2,1,1324,1354,True,Deterministic illustrative example,Example only
+V3,Bus,2025-10-08,1385,2,1,1355,1385,True,Deterministic illustrative example,Example only
+V3,Bus,2025-10-09,1416,2,1,1386,1416,True,Deterministic illustrative example,Example only
+V3,Bus,2025-10-10,1447,2,1,1417,1447,True,Deterministic illustrative example,Example only
+V3,Bus,2025-10-11,1478,2,1,1448,1478,True,Deterministic illustrative example,Example only
+V3,Bus,2025-10-12,1509,2,1,1479,1509,True,Deterministic illustrative example,Example only
+V3,Bus,2025-10-13,1540,2,1,1510,1540,True,Deterministic illustrative example,Example only
+V3,Bus,2025-10-14,1571,2,1,1541,1571,True,Deterministic illustrative example,Example only
+V3,Ferry,2025-10-01,1305,3,2,1275,1305,True,Deterministic illustrative example,Example only
+V3,Ferry,2025-10-02,1336,3,2,1306,1336,True,Deterministic illustrative example,Example only
+V3,Ferry,2025-10-03,1367,3,2,1337,1367,True,Deterministic illustrative example,Example only
+V3,Ferry,2025-10-04,1398,3,2,1368,1398,True,Deterministic illustrative example,Example only
+V3,Ferry,2025-10-05,1429,3,2,1399,1429,True,Deterministic illustrative example,Example only
+V3,Ferry,2025-10-06,1460,3,2,1430,1460,True,Deterministic illustrative example,Example only
+V3,Ferry,2025-10-07,1491,3,2,1461,1491,True,Deterministic illustrative example,Example only
+V3,Ferry,2025-10-08,1522,3,2,1492,1522,True,Deterministic illustrative example,Example only
+V3,Ferry,2025-10-09,1553,3,2,1523,1553,True,Deterministic illustrative example,Example only
+V3,Ferry,2025-10-10,1584,3,2,1554,1584,True,Deterministic illustrative example,Example only
+V3,Ferry,2025-10-11,1615,3,2,1585,1615,True,Deterministic illustrative example,Example only
+V3,Ferry,2025-10-12,1646,3,2,1616,1646,True,Deterministic illustrative example,Example only
+V3,Ferry,2025-10-13,1677,3,2,1647,1677,True,Deterministic illustrative example,Example only
+V3,Ferry,2025-10-14,1708,3,2,1678,1708,True,Deterministic illustrative example,Example only
+V3,Light rail,2025-10-01,1442,4,3,1412,1442,True,Deterministic illustrative example,Example only
+V3,Light rail,2025-10-02,1473,4,3,1443,1473,True,Deterministic illustrative example,Example only
+V3,Light rail,2025-10-03,1504,4,3,1474,1504,True,Deterministic illustrative example,Example only
+V3,Light rail,2025-10-04,1535,4,3,1505,1535,True,Deterministic illustrative example,Example only
+V3,Light rail,2025-10-05,1566,4,3,1536,1566,True,Deterministic illustrative example,Example only
+V3,Light rail,2025-10-06,1597,4,3,1567,1597,True,Deterministic illustrative example,Example only
+V3,Light rail,2025-10-07,1628,4,3,1598,1628,True,Deterministic illustrative example,Example only
+V3,Light rail,2025-10-08,1659,4,3,1629,1659,True,Deterministic illustrative example,Example only
+V3,Light rail,2025-10-09,1690,4,3,1660,1690,True,Deterministic illustrative example,Example only
+V3,Light rail,2025-10-10,1721,4,3,1691,1721,True,Deterministic illustrative example,Example only
+V3,Light rail,2025-10-11,1752,4,3,1722,1752,True,Deterministic illustrative example,Example only
+V3,Light rail,2025-10-12,1783,4,3,1753,1783,True,Deterministic illustrative example,Example only
+V3,Light rail,2025-10-13,1814,4,3,1784,1814,True,Deterministic illustrative example,Example only
+V3,Light rail,2025-10-14,1845,4,3,1815,1845,True,Deterministic illustrative example,Example only
+V3,Rail,2025-10-01,1579,5,4,1549,1579,True,Deterministic illustrative example,Example only
+V3,Rail,2025-10-02,1610,5,4,1580,1610,True,Deterministic illustrative example,Example only
+V3,Rail,2025-10-03,1641,5,4,1611,1641,True,Deterministic illustrative example,Example only
+V3,Rail,2025-10-04,1672,5,4,1642,1672,True,Deterministic illustrative example,Example only
+V3,Rail,2025-10-05,1703,5,4,1673,1703,True,Deterministic illustrative example,Example only
+V3,Rail,2025-10-06,1734,5,4,1704,1734,True,Deterministic illustrative example,Example only
+V3,Rail,2025-10-07,1765,5,4,1735,1765,True,Deterministic illustrative example,Example only
+V3,Rail,2025-10-08,1796,5,4,1766,1796,True,Deterministic illustrative example,Example only
+V3,Rail,2025-10-09,1827,5,4,1797,1827,True,Deterministic illustrative example,Example only
+V3,Rail,2025-10-10,1858,5,4,1828,1858,True,Deterministic illustrative example,Example only
+V3,Rail,2025-10-11,1889,5,4,1859,1889,True,Deterministic illustrative example,Example only
+V3,Rail,2025-10-12,1920,5,4,1890,1920,True,Deterministic illustrative example,Example only
+V3,Rail,2025-10-13,1951,5,4,1921,1951,True,Deterministic illustrative example,Example only
+V3,Rail,2025-10-14,1982,5,4,1952,1982,True,Deterministic illustrative example,Example only
+V4,Bus,2025-10-01,1168,2,1,1138,1168,True,Deterministic illustrative example,Example only
+V4,Bus,2025-10-02,1199,2,1,1169,1199,True,Deterministic illustrative example,Example only
+V4,Bus,2025-10-03,1230,2,1,1200,1230,True,Deterministic illustrative example,Example only
+V4,Bus,2025-10-04,1261,2,1,1231,1261,True,Deterministic illustrative example,Example only
+V4,Bus,2025-10-05,1292,2,1,1262,1292,True,Deterministic illustrative example,Example only
+V4,Bus,2025-10-06,1323,2,1,1293,1323,True,Deterministic illustrative example,Example only
+V4,Bus,2025-10-07,1354,2,1,1324,1354,True,Deterministic illustrative example,Example only
+V4,Bus,2025-10-08,1385,2,1,1355,1385,True,Deterministic illustrative example,Example only
+V4,Bus,2025-10-09,1416,2,1,1386,1416,True,Deterministic illustrative example,Example only
+V4,Bus,2025-10-10,1447,2,1,1417,1447,True,Deterministic illustrative example,Example only
+V4,Bus,2025-10-11,1478,2,1,1448,1478,True,Deterministic illustrative example,Example only
+V4,Bus,2025-10-12,1509,2,1,1479,1509,True,Deterministic illustrative example,Example only
+V4,Bus,2025-10-13,1540,2,1,1510,1540,True,Deterministic illustrative example,Example only
+V4,Bus,2025-10-14,1571,2,1,1541,1571,True,Deterministic illustrative example,Example only
+V4,Ferry,2025-10-01,1305,3,2,1275,1305,True,Deterministic illustrative example,Example only
+V4,Ferry,2025-10-02,1336,3,2,1306,1336,True,Deterministic illustrative example,Example only
+V4,Ferry,2025-10-03,1367,3,2,1337,1367,True,Deterministic illustrative example,Example only
+V4,Ferry,2025-10-04,1398,3,2,1368,1398,True,Deterministic illustrative example,Example only
+V4,Ferry,2025-10-05,1429,3,2,1399,1429,True,Deterministic illustrative example,Example only
+V4,Ferry,2025-10-06,1460,3,2,1430,1460,True,Deterministic illustrative example,Example only
+V4,Ferry,2025-10-07,1491,3,2,1461,1491,True,Deterministic illustrative example,Example only
+V4,Ferry,2025-10-08,1522,3,2,1492,1522,True,Deterministic illustrative example,Example only
+V4,Ferry,2025-10-09,1553,3,2,1523,1553,True,Deterministic illustrative example,Example only
+V4,Ferry,2025-10-10,1584,3,2,1554,1584,True,Deterministic illustrative example,Example only
+V4,Ferry,2025-10-11,1615,3,2,1585,1615,True,Deterministic illustrative example,Example only
+V4,Ferry,2025-10-12,1646,3,2,1616,1646,True,Deterministic illustrative example,Example only
+V4,Ferry,2025-10-13,1677,3,2,1647,1677,True,Deterministic illustrative example,Example only
+V4,Ferry,2025-10-14,1708,3,2,1678,1708,True,Deterministic illustrative example,Example only
+V4,Light rail,2025-10-01,1442,4,3,1412,1442,True,Deterministic illustrative example,Example only
+V4,Light rail,2025-10-02,1473,4,3,1443,1473,True,Deterministic illustrative example,Example only
+V4,Light rail,2025-10-03,1504,4,3,1474,1504,True,Deterministic illustrative example,Example only
+V4,Light rail,2025-10-04,1535,4,3,1505,1535,True,Deterministic illustrative example,Example only
+V4,Light rail,2025-10-05,1566,4,3,1536,1566,True,Deterministic illustrative example,Example only
+V4,Light rail,2025-10-06,1597,4,3,1567,1597,True,Deterministic illustrative example,Example only
+V4,Light rail,2025-10-07,1628,4,3,1598,1628,True,Deterministic illustrative example,Example only
+V4,Light rail,2025-10-08,1659,4,3,1629,1659,True,Deterministic illustrative example,Example only
+V4,Light rail,2025-10-09,1690,4,3,1660,1690,True,Deterministic illustrative example,Example only
+V4,Light rail,2025-10-10,1721,4,3,1691,1721,True,Deterministic illustrative example,Example only
+V4,Light rail,2025-10-11,1752,4,3,1722,1752,True,Deterministic illustrative example,Example only
+V4,Light rail,2025-10-12,1783,4,3,1753,1783,True,Deterministic illustrative example,Example only
+V4,Light rail,2025-10-13,1814,4,3,1784,1814,True,Deterministic illustrative example,Example only
+V4,Light rail,2025-10-14,1845,4,3,1815,1845,True,Deterministic illustrative example,Example only
+V4,Rail,2025-10-01,1579,5,4,1549,1579,True,Deterministic illustrative example,Example only
+V4,Rail,2025-10-02,1610,5,4,1580,1610,True,Deterministic illustrative example,Example only
+V4,Rail,2025-10-03,1641,5,4,1611,1641,True,Deterministic illustrative example,Example only
+V4,Rail,2025-10-04,1672,5,4,1642,1672,True,Deterministic illustrative example,Example only
+V4,Rail,2025-10-05,1703,5,4,1673,1703,True,Deterministic illustrative example,Example only
+V4,Rail,2025-10-06,1734,5,4,1704,1734,True,Deterministic illustrative example,Example only
+V4,Rail,2025-10-07,1765,5,4,1735,1765,True,Deterministic illustrative example,Example only
+V4,Rail,2025-10-08,1796,5,4,1766,1796,True,Deterministic illustrative example,Example only
+V4,Rail,2025-10-09,1827,5,4,1797,1827,True,Deterministic illustrative example,Example only
+V4,Rail,2025-10-10,1858,5,4,1828,1858,True,Deterministic illustrative example,Example only
+V4,Rail,2025-10-11,1889,5,4,1859,1889,True,Deterministic illustrative example,Example only
+V4,Rail,2025-10-12,1920,5,4,1890,1920,True,Deterministic illustrative example,Example only
+V4,Rail,2025-10-13,1951,5,4,1921,1951,True,Deterministic illustrative example,Example only
+V4,Rail,2025-10-14,1982,5,4,1952,1982,True,Deterministic illustrative example,Example only

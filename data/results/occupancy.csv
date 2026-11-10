@@ -1,0 +1,3 @@
+dataset_version,synthetic,provenance,updated,model,accuracy,macro_f1
+V1,False,User-supplied frozen V1 benchmark,Not supplied,Majority-class baseline,0.5943,0.0439
+V1,False,User-supplied frozen V1 benchmark,Not supplied,Decision tree,0.5984,0.0729
