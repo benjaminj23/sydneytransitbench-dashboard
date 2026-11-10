@@ -9,6 +9,8 @@ def style():
     .stApp {background:#f4f7fb;color:#15273c}
     [data-testid="stSidebar"] {background:#10253c}
     [data-testid="stSidebar"] * {color:#e4edf6}
+    [data-testid="stSidebar"] [data-baseweb="select"] * {color:#15273c}
+    [data-testid="stSidebar"] [data-testid="stAlert"] * {color:#15273c}
     [data-testid="stMetric"] {background:white;border:1px solid #dfe7f0;border-radius:14px;padding:18px}
     h1,h2,h3 {letter-spacing:-.035em} .block-container {padding-top:2rem;max-width:1480px}
     </style>''', unsafe_allow_html=True)
