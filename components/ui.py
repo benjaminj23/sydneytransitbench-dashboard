@@ -1,21 +1,25 @@
 import streamlit as st
 import plotly.express as px
+px.defaults.template = 'plotly_dark'
 
 PALETTE = {'Bus':'#2979df','Ferry':'#0baca0','Light rail':'#ed9635','Rail':'#805ad5'}
 DEMO_LABEL = 'Illustrative demonstration data – not research findings.'
 
 def style():
     st.markdown('''<style>
-    .stApp {background:#f4f7fb;color:#15273c}
-    [data-testid="stSidebar"] {background:#10253c}
-    [data-testid="stSidebar"] * {color:#e4edf6}
-    [data-testid="stSidebar"] [data-baseweb="select"] * {color:#15273c}
-    [data-testid="stSidebar"] [data-testid="stAlert"] * {color:#15273c}
-    [data-testid="stSidebar"] [role="combobox"], [data-testid="stSidebar"] [role="combobox"] * {color:#15273c!important}
-    [data-testid="stMetric"] {background:white;border:1px solid #dfe7f0;border-radius:14px;padding:18px}
+    .stApp {background:#090f1b;color:#e6edf7;color-scheme:dark}
+    [data-testid="stHeader"] {background:#090f1bf0}
+    [data-testid="stSidebar"] {background:#0d1727;border-right:1px solid #22334a}
+    [data-testid="stMetric"] {background:#111e30;border:1px solid #27384f;border-radius:14px;padding:18px}
+    [data-testid="stMetricValue"], [data-testid="stMetricLabel"] {color:#e6edf7}
+    [data-testid="stCaptionContainer"] {color:#99acc4}
+    [data-testid="stBaseButton-secondary"] {background:#142136;color:#dce8f5;border-color:#31445d}
+    [data-testid="stBaseButton-secondary"]:hover {border-color:#18b7b0;background:#1b3045}
+    [data-testid="stAlert"] {border:1px solid #ffffff12;border-radius:12px}
+    [data-testid="stExpander"] {background:#101c2d;border-color:#27384f;border-radius:12px}
     h1,h2,h3 {letter-spacing:-.035em} .block-container {padding-top:4rem;max-width:1480px}
     .eyebrow{font-size:11px;font-weight:700;letter-spacing:.17em;color:#87a2c0}
-    .mode-label{color:#526b85;margin:12px 0}
+    .mode-label{color:#9aafc9;margin:12px 0}
     .mode-hero{display:flex;align-items:center;justify-content:space-between;overflow:hidden;background:#10243b;border-radius:24px;padding:32px 40px;margin:18px 0 28px;min-height:310px;box-shadow:0 15px 40px #10243b15;border:1px solid #264360}
     .hero-copy{width:50%;position:relative;z-index:1}.hero-copy h1{font-size:48px;line-height:1.04;color:#f4f8fd!important;max-width:490px;margin:20px 0 15px;padding:0;font-weight:750}
     .hero-copy p{color:#a9bed3;font-size:16px;max-width:370px}.hero-tags{display:flex;gap:9px;margin-top:24px;flex-wrap:wrap}.hero-tags span{font-size:11px;color:#d9e7f4;border:1px solid #ffffff30;padding:6px 12px;border-radius:20px}
@@ -33,7 +37,9 @@ def chart(frame, kind='bar', **kwargs):
     if 'synthetic' in frame and frame.synthetic.any():
         st.warning(DEMO_LABEL)
     fig = getattr(px, kind)(frame, color_discrete_map=PALETTE, **kwargs)
-    fig.update_layout(template='plotly_white',paper_bgcolor='rgba(0,0,0,0)',font=dict(family='Arial',color='#22354b'),margin=dict(t=45,l=15,r=15,b=20),legend_title_text='')
+    fig.update_layout(template='plotly_dark',paper_bgcolor='rgba(0,0,0,0)',plot_bgcolor='#111e30',font=dict(family='Arial',color='#c7d6e8'),margin=dict(t=45,l=15,r=15,b=20),legend_title_text='')
+    fig.update_xaxes(gridcolor='#24344a',zerolinecolor='#31445d')
+    fig.update_yaxes(gridcolor='#24344a',zerolinecolor='#31445d')
     st.plotly_chart(fig, use_container_width=True)
 
 def table(frame):
