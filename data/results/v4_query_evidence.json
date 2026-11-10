@@ -1,0 +1,123 @@
+{
+  "dataset_version": "V4",
+  "source_file": "multimodal_historical_unified_V4.parquet",
+  "source_sha256": "6056807ce186c4579a6ee459bd6a120365a700d271c5b5fcbbf8c45471c90d59",
+  "source_bytes": 238233812,
+  "generated_at": "2026-11-10T19:48:10.491662+00:00",
+  "records": 16928290,
+  "unique_routes": 4767,
+  "unique_stops": 38681,
+  "date_coverage": "2026-03-23 to 2026-10-31",
+  "coverage_definition": "Unique routes and stops counted as (mode, ID) pairs; service-date coverage, not continuous availability.",
+  "mode_totals": [
+    {
+      "mode": "Bus",
+      "records": 15837917,
+      "start_date": "2026-09-10",
+      "end_date": "2026-10-14",
+      "unique_routes": 4678,
+      "unique_stops": 37767,
+      "missing_service_date": 0,
+      "observed_service_dates": 11,
+      "scheduled_time_only": 9024053,
+      "actual_time_only": 9024055
+    },
+    {
+      "mode": "Ferry",
+      "records": 32182,
+      "start_date": "2026-09-14",
+      "end_date": "2026-10-14",
+      "unique_routes": 12,
+      "unique_stops": 54,
+      "missing_service_date": 0,
+      "observed_service_dates": 13,
+      "scheduled_time_only": 0,
+      "actual_time_only": 0
+    },
+    {
+      "mode": "Light rail",
+      "records": 474560,
+      "start_date": "2026-03-23",
+      "end_date": "2026-10-31",
+      "unique_routes": 6,
+      "unique_stops": 126,
+      "missing_service_date": 0,
+      "observed_service_dates": 24,
+      "scheduled_time_only": 0,
+      "actual_time_only": 0
+    },
+    {
+      "mode": "Rail",
+      "records": 583631,
+      "start_date": "2026-09-15",
+      "end_date": "2026-10-14",
+      "unique_routes": 71,
+      "unique_stops": 734,
+      "missing_service_date": 0,
+      "observed_service_dates": 11,
+      "scheduled_time_only": 0,
+      "actual_time_only": 0
+    }
+  ],
+  "gtfs_metric_label": "GTFS trip ID populated / records (not independently revalidated GTFS matches)",
+  "explorer_checks": [
+    {
+      "mode": "Bus",
+      "filters": {
+        "route_id": "545",
+        "direction_id": "Outbound",
+        "stop_id": "2113211",
+        "service_date": "2026-09-10",
+        "mode": "Bus"
+      },
+      "reference_count": 73,
+      "preview_rows": 37,
+      "limit": 37,
+      "passed": true
+    },
+    {
+      "mode": "Ferry",
+      "filters": {
+        "route_id": "Stkn Stockton Ferry",
+        "direction_id": "Outbound",
+        "stop_id": "2300102",
+        "service_date": "2026-09-14",
+        "mode": "Ferry"
+      },
+      "reference_count": 53,
+      "preview_rows": 37,
+      "limit": 37,
+      "passed": true
+    },
+    {
+      "mode": "Light rail",
+      "filters": {
+        "route_id": "IWLR-191",
+        "direction_id": "Down",
+        "stop_id": "204994",
+        "service_date": "2026-03-23",
+        "mode": "Light rail"
+      },
+      "reference_count": 142,
+      "preview_rows": 37,
+      "limit": 37,
+      "passed": true
+    },
+    {
+      "mode": "Rail",
+      "filters": {
+        "route_id": "IWL_2a",
+        "direction_id": "Up",
+        "stop_id": "2150413",
+        "service_date": "2026-09-15",
+        "mode": "Rail"
+      },
+      "reference_count": 4,
+      "preview_rows": 4,
+      "limit": 37,
+      "passed": true
+    }
+  ],
+  "injection_check_passed": true,
+  "release_validation": "Not established by these aggregate and query checks"
+}

@@ -1,1 +1,23 @@
-{"mode":"demo","default_version":"V3","contributors":[{"role":"Active team member","name":"To be supplied"},{"role":"Active team member","name":"To be supplied"},{"role":"Active team member","name":"To be supplied"},{"role":"Former contributor — delay prediction","name":"To be supplied"}],"acknowledgements":"To be supplied by the project team."}
+{
+  "mode": "real",
+  "default_version": "V4",
+  "contributors": [
+    {
+      "role": "Active team member",
+      "name": "To be supplied"
+    },
+    {
+      "role": "Active team member",
+      "name": "To be supplied"
+    },
+    {
+      "role": "Active team member",
+      "name": "To be supplied"
+    },
+    {
+      "role": "Former contributor \u00e2\u20ac\u201d delay prediction",
+      "name": "To be supplied"
+    }
+  ],
+  "acknowledgements": "To be supplied by the project team."
+}

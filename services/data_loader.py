@@ -1,5 +1,6 @@
 """Local, provenance-preserving input adapters. No network access is required."""
 import json
+import os
 from pathlib import Path
 import pandas as pd
 
@@ -34,6 +35,12 @@ def version_label(version: str, meta: dict) -> str:
     if meta.get('validated') is True:
         return f'Validated {version}'
     return {'frozen':f'Frozen {version}','provisional':f'Provisional {version}'}.get(meta['status'], f'{version} Candidate — awaiting validation')
+
+def integrated_path(version: str, meta: dict) -> Path:
+    """Local paths stay outside published metadata; hosted absence is explicit."""
+    local = ROOT / 'config/local_paths.json'
+    overrides=json.loads(local.read_text(encoding='utf-8')) if local.exists() else {}
+    return ROOT / os.getenv(f'STB_{version}_PARQUET',overrides.get(version,meta['integrated']))
 
 def validate(frame: pd.DataFrame, kind: str) -> pd.DataFrame:
     missing = set(SCHEMAS[kind]) - set(frame.columns)

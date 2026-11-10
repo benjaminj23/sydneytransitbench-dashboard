@@ -2,6 +2,8 @@
 
 A local Streamlit research dashboard for multimodal Sydney transport integration, quality validation, prediction and storage benchmarking. No Azure credentials or API keys are required. Seven workspaces share a version registry and provenance-preserving file adapters.
 
+The current homepage defaults to V4 real-data mode with queried aggregates and coverage. Navigation groups the research content under Dashboard, Explore and Research. See [V4_HANDOFF.md](V4_HANDOFF.md) for source fingerprints, query verification, limitations and pending release/model inputs. The public deployment does not bundle the full raw V4 dataset; its explorer is disabled when that source is absent.
+
 ## Windows / VS Code setup
 
 Install Python 3.11+ from python.org, open this directory in VS Code, then use its terminal:

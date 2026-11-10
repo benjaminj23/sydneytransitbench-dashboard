@@ -3,6 +3,7 @@ __pycache__/
 .pytest_cache/
 .env
 .env.*
+config/local_paths.json
 .streamlit/secrets.toml
 *.log
 data/integrated/*

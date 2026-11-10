@@ -26,6 +26,7 @@ def test_real_missing_v4():
 
 def test_v1_models_and_explorer():
     app = AppTest.from_file(str(ROOT/'app.py'), default_timeout=30).run()
+    app.sidebar.selectbox[1].set_value('demo')
     app.sidebar.selectbox[0].set_value('V1')
     app.sidebar.radio[0].set_value('Research').run()
     for page in ['Arrival Delay Prediction','Occupancy Prediction']:

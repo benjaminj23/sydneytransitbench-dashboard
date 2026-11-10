@@ -3,7 +3,7 @@ import os
 from pathlib import Path
 import pandas as pd
 import streamlit as st
-from services.data_loader import ROOT, config, registry, version_label, load, demo, read_file, validate
+from services.data_loader import ROOT, config, registry, version_label, load, demo, read_file, validate, integrated_path
 from services.duckdb_queries import preview
 from components.ui import style, chart, table, DEMO_LABEL
 from components.cockpit import hero, mode_selector
@@ -57,7 +57,7 @@ def absent(message):
 
 def aggregates():
     data = get('aggregates')
-    if data.empty and mode == 'demo':
+    if data.empty and mode == 'demo' and meta.get('allow_demo',True):
         data = demo('aggregates',version)
     if not data.empty:
         data = data[data['mode']==selected_transport]
@@ -75,6 +75,14 @@ if page == PAGES[0]:
     cols[1].metric('Exploring', selected_transport)
     cols[2].metric('Dataset', version)
     cols[3].metric('Release status', 'Validated' if meta['validated'] else meta['status'].title())
+    if meta.get('mode_totals'):
+        st.subheader('V4 coverage · queried from the source Parquet')
+        st.dataframe(pd.DataFrame(meta['mode_totals']),hide_index=True,use_container_width=True)
+        st.caption(meta['coverage_definition'])
+        st.caption(f"Aggregate generation: {meta['updated']} · Source SHA-256: {meta['source_sha256']}")
+        selected_coverage=next((r for r in meta['mode_totals'] if r['mode']==selected_transport),None)
+        if selected_coverage and selected_coverage.get('scheduled_time_only',0):
+            st.info('This mode contains time-only arrival strings. Delay derivation is left unavailable for those rows until service-date and rollover rules are confirmed; these values are not automatically labelled errors.')
     st.subheader(f'Inside the {selected_transport.lower()} network')
     st.caption('Mode selection filters the charts below. Research totals and model evaluations retain their original scope.')
     data = aggregates()
@@ -86,13 +94,30 @@ if page == PAGES[0]:
             chart(missing, x='mode',y=['missing_scheduled','missing_actual'],title='Arrival timestamp completeness · missing values')
         eligible = data.groupby(['mode','synthetic'],as_index=False)[['gtfs_matches','gtfs_eligible']].sum()
         eligible['match_rate'] = eligible.gtfs_matches.div(eligible.gtfs_eligible.replace(0,float('nan')))
-        with b: chart(eligible,x='mode',y='match_rate',color='mode',title='GTFS matching rate (matched / eligible)')
+        with b: chart(eligible,x='mode',y='match_rate',color='mode',title=meta.get('gtfs_metric_label','GTFS matching rate (matched / eligible)'))
     else: absent('Supply aggregates.csv for mode counts, dates, missingness and GTFS rates.')
     with st.expander('Coverage, provenance and integration pipeline'):
         st.write(PIPELINE)
         st.write({label:meta.get(key,'Not supplied') for label,key in [('Unique routes','unique_routes'),('Unique stops','unique_stops'),('Date coverage','date_coverage')]})
         st.caption('Arrival-delay distributions await observed delay aggregates. No live vehicle positions are shown.')
-    notes('Registry totals are project-reported integrated counts. Synthetic aggregates do not reconcile to research totals and are never used for KPI cards. Frozen does not imply validated.')
+    notes('V4 totals and coverage are direct SQL results from the fingerprinted source Parquet. Older registry totals are project-reported. Route and stop identifiers are counted within mode, not deduplicated physical entities across modes. Service-date bounds do not imply continuous date coverage. Synthetic aggregates are never used for research KPI cards. Frozen does not imply validated.')
+    st.subheader('Modelling results · evaluation register')
+    st.caption('Metrics stay attached to their evaluated dataset. Evaluation dates are separate from file update dates.')
+    for task in ['delay','occupancy']:
+        evaluations=get(task)
+        if evaluations.empty:
+            st.info(f'{version} {task}: experiments awaiting team-supplied evaluation results, dates, baselines and limitations.')
+        else:
+            display=evaluations.copy()
+            for field in ['evaluation_start','evaluation_end','evaluated_at','split_strategy','baseline','limitations']:
+                if field not in display:display[field]='Not supplied'
+            fields=['model']+(['mae'] if task=='delay' else ['accuracy','macro_f1'])+['evaluation_start','evaluation_end','evaluated_at','split_strategy','baseline','limitations']
+            st.write(f'{version} · {task}')
+            st.dataframe(display[fields],hide_index=True,use_container_width=True)
+    st.subheader('How the pipeline supports modelling')
+    st.write('Integration creates the common observation table; it does not itself make predictions. Source-aware deduplication reduces repeated observations, GTFS identifiers support reference alignment, and timestamp/quality checks establish which rows can be used for each target. Delay regression uses actual minus scheduled arrival; occupancy classification uses the reported ordered passenger band. Actual arrivals and measured occupancy are targets or quality diagnostics, never predictor inputs.')
+    st.write('The next artifact is a versioned modelling table recording row eligibility, feature definitions and exclusions. Evaluation must record the held-out dates, split strategy, training-only preprocessing, baselines and metrics. This links each result back to the integrated release and makes leakage and comparability assessable. V1 scores are historical evidence, not proof of V4 performance.')
+    st.caption('Reviewer-response wording should be reconciled with Reviewer 1’s exact comment once supplied. Aggregation/query checks do not constitute release validation or model evaluation.')
 
 elif page == PAGES[1]:
     st.warning('Quality checks may overlap and cover different scopes. Do not sum these findings or extrapolate October figures to all of V3. Flagged anomalies are not confirmed errors.')
@@ -126,29 +151,40 @@ elif page == PAGES[1]:
         st.subheader('Mode-level diagnostic aggregates')
         chart(agg,x='mode',y=['missing_scheduled','missing_actual'],title='Missing values by mode')
         agg = agg.copy(); agg['gtfs_rate'] = agg.gtfs_matches / agg.gtfs_eligible.replace(0,float('nan'))
-        chart(agg,x='mode',y='gtfs_rate',color='mode',title='GTFS matches / eligible records')
+        chart(agg,x='mode',y='gtfs_rate',color='mode',title=meta.get('gtfs_metric_label','GTFS matches / eligible records'))
     absent('Supply scoped GTFS rates and source-level quality rows where unavailable. Unknown rates remain unknown.')
     notes('Raw and retained counts refer to the stated source/time scope. Deduplication removed = raw − retained within the same scope. Missing-arrival counts identify null timestamps. Repeated-key groups, occupancy disagreements and conflicting keys use different tests; they are not additive. Potential rollover anomalies require adjudication. GTFS rate uses eligible records as its denominator. Scope dates without a year are retained as text descriptions rather than invented dates.')
 
 elif page == PAGES[2]:
     st.write('Query a bounded operational preview. Exact filters are pushed into DuckDB; blank filters mean all values.')
+    raw_available=integrated_path(version,meta).exists()
+    explorer_available=raw_available or (mode=='demo' and meta.get('allow_demo',True))
+    if not explorer_available:
+        st.info(f'{version} raw Parquet is not available in this deployment. The charts use precomputed aggregates; they do not establish access to raw records. Configure the approved dataset path to enable queries.')
     with st.form('explorer'):
         cols = st.columns(5)
         filters = {'mode':selected_transport}
         cols[0].metric('Transport mode',selected_transport)
         filters.update({key:col.text_input(label) for col,key,label in zip(cols[1:],['route_id','direction_id','stop_id','service_date'],['Route ID','Direction','Stop ID','Service date (YYYY-MM-DD)'])})
         limit = st.slider('Maximum preview rows',10,2000,500)
-        run = st.form_submit_button('Query operational records',type='primary')
+        run = st.form_submit_button('Query operational records',type='primary',disabled=not explorer_available)
     if run:
-        path = ROOT / meta['integrated']
+        path = integrated_path(version,meta)
         synthetic = False
-        if not path.exists() and mode=='demo':
+        if not path.exists() and mode=='demo' and meta.get('allow_demo',True):
             path = ROOT / 'data/demo/integrated.parquet'; synthetic=True
         try:
             @st.cache_data(ttl=120,max_entries=32)
-            def cached_preview(path_string,mtime,filters,limit):
-                return preview(Path(path_string),filters,limit)
-            result = cached_preview(str(path),path.stat().st_mtime_ns,filters,limit)
+            def cached_preview(path_string,mtime,filters,limit,column_map,mode_map):
+                return preview(Path(path_string),filters,limit,column_map,mode_map)
+            if meta.get('source_sha256'):
+                import hashlib
+                @st.cache_data(max_entries=4)
+                def source_digest(path_string,mtime,size):
+                    with open(path_string,'rb') as handle:return hashlib.file_digest(handle,'sha256').hexdigest()
+                if source_digest(str(path),path.stat().st_mtime_ns,path.stat().st_size)!=meta['source_sha256']:
+                    raise ValueError('Source fingerprint differs from the V4 aggregate release. Regenerate and review the release artifacts before querying.')
+            result = cached_preview(str(path),path.stat().st_mtime_ns,filters,limit,meta.get('column_map',{}),meta.get('mode_map',{}))
             if synthetic: st.warning(DEMO_LABEL)
             st.session_state['explorer_result'] = result
             st.session_state['explorer_synthetic'] = synthetic
@@ -169,6 +205,8 @@ elif page == PAGES[2]:
             else: absent('Load verified GTFS stop coordinates to show selected stop locations. No coordinates are invented.')
         except (ValueError,OSError) as exc: st.error(str(exc))
     notes('Only recognized fields are selected. Queries use bound parameters and a hard 2,000-row limit; the preview is unordered and not a random sample. GTFS maps show stop points, not inferred route geometry. Timestamp columns should be timezone-consistent. Delay is actual minus scheduled arrival in minutes.')
+    if version=='V4':
+        st.caption('V4 explorer was tested against the fingerprinted local source with mode + route + direction + stop + service-date filters and independent SQL reference counts. The hosted explorer requires that same Parquet source; bundled aggregate charts do not imply hosted raw-data availability.')
 
 elif page in [PAGES[3],PAGES[4]]:
     delay = page == PAGES[3]
